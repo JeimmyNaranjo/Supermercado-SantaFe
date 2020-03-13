@@ -1,6 +1,7 @@
 
 package supermercadosantafe;
 
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,6 +21,7 @@ public class Principal {
     public static void main(String[] args) {
        
         int opciones;
+      
         
         do {
             System.out.println("0. Salir ");
@@ -41,10 +43,9 @@ public class Principal {
                     break;
                 case 4:
                     AumentarSalario();
-                            
                     break;
                 case 5:
-                    TotalNomina();
+                   TotalNomina();
                     break;
                 
             }
@@ -84,7 +85,6 @@ public class Principal {
         teclado.nextLine();
         System.out.println("Departamento o area: ");
         String area = teclado.nextLine();
-        //teclado.nextLine();
         int cont = 0;
                 
          for (Empleado elemt : empleados){
@@ -101,52 +101,29 @@ public class Principal {
          else {
              System.out.println("En el Departamento " + area + " hay " + cont + " empleados. " );                 
          }
-         
-            
+    }    
+
+    private static void AumentarSalario() {
+        for (int i =0; i < empleados.size();i++){ 
+            int salario = empleados.get(i).getSalario();
+            salario = (salario*10) /100;
+            salario = salario + empleados.get(i).getSalario();  
+           empleados.get(i).setSalario(salario); // Guardar el nuevo salario en la lista
         }
-
-     public static void AumentarSalario() {
-        //static Integer s = 0.10; 
-        for (Empleado elm : empleados){
-        empleados.get(3).getSalario();
-        int isalario = empleados.get(3).getSalario();
-        isalario = (isalario * 10)/100;
-        isalario = isalario + empleados.get(3).getSalario();
-        empleados.set(empleados.get(3).getSalario(), isalario);
+        for(Empleado elemento: empleados){
+            System.out.println(elemento); //Imprimir los datos del empleado con salario nuevo
         }
-        
-       
-       
-        
-                
-         }
-       /**  double salario = 0.10;
-
-         for (Empleado i : empleados.) {
-             double isalario = (double) i.getSalario();
-             isalario = salario * i.getSalario();
-             isalario = isalario + i.getSalario();
-             int iisalario = (int) isalario;
-             //empleados.set(3, iisalario);
-             return iisalario;
-         }
-         empleados.set(3, iisalario);
-         System.out.println(empleados); */    
-     }
-
-    public static void TotalNomina() {
-       // int total = 0;
-        //for (Empleado j: empleados){
-          //  total = total + empleados.get(j.getSalario());
-            
-        }
-        
-       
-    }
-    
-
-  
-            
      
-    
+    }
+
+    private static void TotalNomina() {
+        int salario = 0;
+        for (int i =0; i < empleados.size();i++){ 
+            salario = salario + empleados.get(i).getSalario(); 
+        }
+        DecimalFormat format = new DecimalFormat("$###,###");
+        String salarioStr = format.format(salario);
+        System.out.println("La nomina total del Supermercado Santafe  es: " + salarioStr);
+    }
+}
 

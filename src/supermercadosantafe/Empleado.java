@@ -61,6 +61,8 @@ public class Empleado {
        String salarioStr = format.format(salario);
         return "Empleado {" + "nombre= " + nombre + ", departamento= " + departamento + ", cargo= " + cargo + ", salario= " + salarioStr + '}';
     }
+    
+    
 
    
     
